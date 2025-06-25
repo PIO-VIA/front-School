@@ -74,6 +74,7 @@ function ClassroomForm({ classroom, onClose, onSaved }: ClassroomFormProps) {
       onSaved();
       onClose();
     } catch (error) {
+      console.error("Erreur lors de l'enregistrement:", error);
       setError("Une erreur est survenue lors de l'enregistrement.");
     }
     setIsLoading(false);

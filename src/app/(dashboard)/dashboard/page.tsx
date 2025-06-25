@@ -113,7 +113,7 @@ export default function DashboardPage() {
             </div>
             <div className="flex items-center space-x-4">
               <div className="text-right">
-                <p className="text-sm text-gray-500">Aujourd'hui</p>
+                <p className="text-sm text-gray-500">Aujourd hui</p>
                 <p className="font-semibold text-gray-900">{currentDate}</p>
               </div>
               <motion.div
