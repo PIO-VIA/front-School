@@ -57,18 +57,18 @@ export type PresenceRecord = {
 
 export type Bulletin = {
   annee: string;
-  trimestre: number;
+  trimestre?: number;
   matieres: {
     nom: string;
     note: number;
-    coefficient: number;
-    appreciation: string;
+    coefficient?: number;
+    appreciation?: string;
   }[];
-  moyenneGenerale: number;
-  rang: number;
-  effectif: number;
-  appreciation: string;
-  mention: string;
+  moyenneGenerale?: number;
+  rang?: number;
+  effectif?: number;
+  appreciation?: string;
+  mention?: string;
 };
 
 const EXAMPLE_STUDENTS: Student[] = [

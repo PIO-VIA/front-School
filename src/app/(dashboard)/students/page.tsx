@@ -1,22 +1,27 @@
+// src/app/(dashboard)/students/page.tsx
 "use client";
 
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 import StudentList from "./components/StudentList";
 import StudentForm from "./components/StudentForm";
 import StudentPresenceHistory from "./components/StudentPresenceHistory";
-import StudentBulletin from "./components/StudentBulletin";
 import StudentInscriptionForm from "./components/StudentInscriptionForm";
 import { Student } from "./components/studentData";
 
 export default function StudentsPage() {
+  const router = useRouter();
   const [showForm, setShowForm] = useState(false);
   const [editStudent, setEditStudent] = useState<Student | null>(null);
   const [showPresence, setShowPresence] = useState<Student | null>(null);
-  const [showBulletin, setShowBulletin] = useState<Student | null>(null);
   const [showInscription, setShowInscription] = useState<Student | null>(null);
   const [refresh, setRefresh] = useState(0);
 
   const handleSaved = () => setRefresh((r) => r + 1);
+
+  const handleViewBulletin = (student: Student) => {
+    router.push(`/students/${student.id}/bulletin`);
+  };
 
   return (
     <div>
@@ -39,7 +44,7 @@ export default function StudentsPage() {
           setShowForm(true);
         }}
         onViewPresence={setShowPresence}
-        onViewBulletin={setShowBulletin}
+        onViewBulletin={handleViewBulletin}
         onInscription={setShowInscription}
       />
       {/* Formulaire d'ajout/modification */}
@@ -75,24 +80,6 @@ export default function StudentsPage() {
           </div>
         </div>
       )}
-      {/* Bulletin de notes */}
-      {showBulletin && (
-        <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
-          <div className="bg-white p-6 rounded shadow-lg min-w-[350px] max-w-lg w-full">
-            <h2 className="text-xl font-bold mb-4">
-              Bulletin de {showBulletin.prenom} {showBulletin.nom}
-            </h2>
-            <StudentBulletin
-              student={showBulletin}
-              onClose={() => {
-                setShowBulletin(null);
-                handleSaved();
-              }}
-              onSaved={handleSaved}
-            />
-          </div>
-        </div>
-      )}
       {/* Inscription */}
       {showInscription && (
         <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
@@ -113,4 +100,4 @@ export default function StudentsPage() {
       )}
     </div>
   );
-} 
+}
