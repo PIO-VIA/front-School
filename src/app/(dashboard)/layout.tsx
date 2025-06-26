@@ -103,7 +103,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
               variants={sidebarVariants}
               initial="closed"
               animate="open"
-              exit="closed"
+              exit="closed" 
               className="fixed left-0 top-0 h-full z-50 lg:hidden"
             >
               <Sidebar />
